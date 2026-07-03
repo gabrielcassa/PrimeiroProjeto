@@ -494,6 +494,16 @@ a{text-decoration:none;color:inherit}
 .historia-estrofes p:last-child{margin-bottom:0}
 .historia-assinatura{font-family:var(--ff-script);font-size:30px;color:var(--gold-l);margin-top:26px;text-align:right}
 @media(max-width:480px){.historia-poema{padding:32px 22px}}
+.recados-s{background:var(--creme-d);padding:80px 0;text-align:center}
+.recado-box{max-width:560px;margin:32px auto 0;background:var(--white);border:1px solid var(--gold-pale);border-radius:6px;padding:40px 36px;box-shadow:0 4px 40px rgba(139,107,20,.08)}
+.recado-box input,.recado-box textarea{width:100%;font-family:var(--ff-body);font-size:16px;color:var(--text);background:var(--creme);border:1px solid var(--gold-pale);border-radius:6px;padding:14px 16px;margin-bottom:16px;outline:none;transition:border-color .2s}
+.recado-box input:focus,.recado-box textarea:focus{border-color:var(--gold-line)}
+.recado-box textarea{min-height:120px;resize:vertical;line-height:1.6}
+.recado-box button{background:var(--gold);color:var(--white);border:none;border-radius:100px;font-family:var(--ff-body);font-size:15px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:14px 40px;cursor:pointer;transition:background .2s}
+.recado-box button:hover{background:var(--gold-l)}
+.recado-box button:disabled{opacity:.6;cursor:default}
+.recado-ok{font-family:var(--ff-serif);font-style:italic;font-size:21px;color:var(--gold);line-height:1.5}
+.recado-note{margin-top:14px;font-size:12px;color:var(--text-l);font-family:var(--ff-body);font-weight:300;min-height:16px}
 </style>
 </head>
 <body>
@@ -826,6 +836,30 @@ a{text-decoration:none;color:inherit}
 <!-- ══════════════════════════════════════
      FOOTER
 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     RECADOS AOS NOIVOS
+══════════════════════════════════════ -->
+<section class="recados-s" id="recados">
+  <div class="wrap--sm" style="text-align:center">
+    <span class="section-tag">Recadinhos</span>
+    <h2 class="section-title">Deixe seu recado<br><em>aos noivos</em></h2>
+    <div class="divider" style="margin:0 auto 32px">
+      <div class="divider-l"></div>
+      <div class="divider-ic">♡</div>
+      <div class="divider-l"></div>
+    </div>
+    <div class="recado-box">
+      <form id="recadoForm" novalidate>
+        <input type="text" name="nome" placeholder="Seu nome" maxlength="80" required>
+        <textarea name="recado" placeholder="Escreva seu recado com carinho para Thabata e Francisco…" maxlength="1000" required></textarea>
+        <button type="submit">Enviar recado</button>
+        <p class="recado-note" id="recadoNote"></p>
+      </form>
+      <div class="recado-ok" id="recadoOk" style="display:none">💛 Recado enviado! Muito obrigado pelo carinho.</div>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-names">Thabata & Francisco</div>
   <p class="footer-date">02 · Agosto · 2026 · Coronel Xavier Chaves</p>
@@ -1171,6 +1205,46 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
   });
 });
+
+/* ═══════════════════ RECADOS AOS NOIVOS ═══════════════════
+   Coloque o e-mail que vai RECEBER os recados entre as aspas abaixo.
+   Usa o serviço gratuito FormSubmit — na primeira mensagem o dono do
+   e-mail recebe um link de confirmação (clicar 1x para ativar). */
+var RECADO_EMAIL = "";
+
+(function(){
+  var form = document.getElementById('recadoForm');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome = form.nome.value.trim();
+    var recado = form.recado.value.trim();
+    var note = document.getElementById('recadoNote');
+    if(!nome || !recado){ note.textContent = 'Por favor, preencha seu nome e o recado.'; return; }
+    if(!RECADO_EMAIL){ note.textContent = 'O envio de recados será ativado em breve 💛'; return; }
+    var btn = form.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Enviando…'; note.textContent = '';
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(RECADO_EMAIL), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        nome: nome,
+        recado: recado,
+        _subject: 'Novo recado no site do casamento 💌',
+        _template: 'box'
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      form.style.display = 'none';
+      document.getElementById('recadoOk').style.display = 'block';
+    })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = 'Enviar recado';
+      note.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+    });
+  });
+}());
 </script>
 
 </body>
