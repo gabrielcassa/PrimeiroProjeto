@@ -504,6 +504,7 @@ a{text-decoration:none;color:inherit}
 .recado-box button:disabled{opacity:.6;cursor:default}
 .recado-ok{font-family:var(--ff-serif);font-style:italic;font-size:21px;color:var(--gold);line-height:1.5}
 .recado-note{margin-top:14px;font-size:12px;color:var(--text-l);font-family:var(--ff-body);font-weight:300;min-height:16px}
+.vcard-det{font-family:var(--ff-body);font-size:13px;font-weight:300;color:var(--text-l);line-height:1.45;margin-top:-2px}
 </style>
 </head>
 <body>
@@ -899,17 +900,18 @@ var GRUPOS = [
     titulo: 'Experiências & Lua de Mel',
     ic: '✈️',
     itens: [
-      { n:'Passagens da lua de mel', p:3500.00, i:'✈️', img:'img/exp/exp-passagem.png' },
-      { n:'Diária de hospedagem', p:1500.00, i:'🏨', img:'img/exp/exp-diaria.png' },
-      { n:'Experiência exclusiva a dois', p:1200.00, i:'❤️', img:'img/exp/exp-adois.png' },
-      { n:'Aluguel de carro', p:900.00, i:'🚗', img:'img/exp/exp-carro.png' },
-      { n:'Passeio inesquecível', p:900.00, i:'🌄', img:'img/exp/exp-passeio.png' },
-      { n:'Registro de momentos especiais', p:700.00, i:'📸', img:'img/exp/exp-fotografia.png' },
-      { n:'Combustível e deslocamentos', p:500.00, i:'⛽', img:'img/exp/exp-gasolina.png' },
-      { n:'Lembranças da viagem', p:500.00, i:'🎁', img:'img/exp/exp-lembranca.png' },
-      { n:'Jantar romântico', p:450.00, i:'🍽️', img:'img/exp/exp-jantar.png' },
-      { n:'Experiência gastronômica', p:450.00, i:'🍫', img:'img/exp/exp-gastronomia.png' },
-      { n:'Café especial para o casal', p:350.00, i:'☕', img:'img/exp/exp-cafe.png' }
+      { n:'Passagens da lua de mel', p:3500, i:'✈️', d:'Rumo aos Lençóis Maranhenses', img:'img/exp/exp-passagem.png' },
+      { n:'Ensaio fotográfico nos Lençóis — Completo', p:2800, i:'📸', d:'Leo Castro · 30 fotos, vídeo de drone, takes brutos + passeio privativo', img:'' },
+      { n:'Café da manhã ao nascer do sol + piquenique ao pôr do sol', p:2000, i:'🌅', d:'04h–07h30 · café completo, mesa posta, decoração e veículo exclusivo', img:'' },
+      { n:'Diária de hospedagem', p:1500, i:'🏨', d:'Pacas Suítes Eco Lodge', img:'img/exp/exp-diaria.png' },
+      { n:'Ensaio fotográfico nos Lençóis — Intermediário', p:1300, i:'📸', d:'Leo Castro · até 20 fotos + vídeo de drone editado', img:'' },
+      { n:'Cavalgada em Atins', p:1100, i:'🐎', d:'15h–18h · guia e equipe credenciados', img:'' },
+      { n:'Quadriciclo em Santo Amaro', p:1100, i:'🏍️', d:'08h30–12h ou 14h–18h · até 2 pessoas', img:'' },
+      { n:'Quadriciclo em Atins', p:1100, i:'🏍️', d:'08h30–12h ou 14h–18h · até 2 pessoas', img:'' },
+      { n:'Ensaio fotográfico nos Lençóis — Essencial', p:800, i:'📸', d:'Leo Castro · até 25 fotos + 3 fotos de drone', img:'' },
+      { n:'Quadriciclo nos Pequenos Lençóis', p:600, i:'🏍️', d:'Trilhas, dunas e lagoas · até 2 pessoas', img:'' },
+      { n:'Lembranças da viagem', p:500, i:'🎁', d:'', img:'img/exp/exp-lembranca.png' },
+      { n:'Combustível e deslocamentos', p:500, i:'⛽', d:'', img:'img/exp/exp-gasolina.png' }
     ]
   },
   {
@@ -943,7 +945,6 @@ var GRUPOS = [
       { n:'Sanduicheira Inox Multiuso Oster', p:299, i:'🥪', img:'img/sanduicheira.png' }, /*conf*/
       { n:'Torradeira Oster Inox Simple Life', p:299, i:'🍞', img:'img/torradeira.jpg' }, /*conf*/
       { n:'Ferro de Passar a Vapor Oster AeroCeramic 250ml', p:249, i:'👕', img:'img/ferro-oster.jpg' }, /*conf*/
-      { n:'Ferro a Vapor Elétrico (Casa e Viagem)', p:249, i:'🧳', img:'img/ferro-viagem.webp' } /*conf*/
     ]
   },
   {
@@ -953,13 +954,10 @@ var GRUPOS = [
     itens: [
       { n:'Churrasqueira Móvel Parrilla Argentina Inox + Refratários', p:949, i:'🔥', img:'img/churrasqueira.webp' }, /*conf*/
       { n:'Jogo de 6 Caçarolas de Ferro (Indução / Bifeteira)', p:849, i:'🍲', img:'img/jogo-6-cacarolas.webp' }, /*conf*/
-      { n:'Panela de Ferro Fundido Oval com Tampa de Ferro 6,5L', p:499, i:'🥘', img:'img/panela-oval.webp' }, /*conf*/
       { n:'Lixeira Dupla Inox 30L com Pedal (2x15L)', p:549, i:'🗑️', img:'img/lixeira.jpg' },
       { n:'Faqueiro para Churrasco Tramontina Amazonas Inox 42 Peças', p:499, i:'🍴', img:'img/faqueiro.webp' }, /*conf*/
       { n:'Caçarola / Panela Forno Holandês de Ferro Fundido', p:499, i:'🥘', img:'img/holandes.webp' }, /*conf*/
       { n:'Caçarola Alça de Madeira Tampa de Ferro 9,8L 32cm', p:349, i:'🍲', img:'img/cacarola-madeira.jpg' }, /*conf*/
-      { n:'Kit Café Alumínio Vermelho (Bule, Chaleira e Leiteira)', p:349, i:'🫖', img:'img/cafe-aluminio.webp' }, /*conf*/
-      { n:'Jogo de Facas Tramontina Nygma Inox Preto 6 Peças', p:299, i:'🔪', img:'' }, /*conf*/
       { n:'Escorredor Kitchen Rack Aço Inox Preto', p:229, i:'🍽️', img:'img/escorredor.jpg' }
     ]
   },
@@ -991,13 +989,10 @@ var GRUPOS = [
     itens: [
       { n:'Jogo de Cama Casal Buddemeyer 100% Algodão 4 Peças Soft Cotton Rosa', p:549, i:'🛏️', img:'img/cama-buddemeyer.jpg' }, /*conf*/
       { n:'Edredom Queen Sherpa Verde Escuro', p:699, i:'🛌', img:'img/edredom-queen.jpg' }, /*conf*/
-      { n:'Kit Toalha Banho 2pç + Rosto 2pç Eloá — Buddemeyer', p:349, i:'🛁', img:'img/toalha-eloa.jpg' }, /*conf*/
       { n:'Kit Toalha Banho 2pç + Rosto 2pç Roseli Extra Soft — Buddemeyer', p:349, i:'🧖', img:'img/toalha-roseli-rosto.jpg' }, /*conf*/
       { n:'Edredom Casal Sherpa Verde Escuro', p:799, i:'🛌', img:'img/edredom-casal.jpg' }, /*conf*/
       { n:'Jogo de Cama Camafeu de Algodão Casal Rosa Claro', p:449, i:'🛏️', img:'img/camafeu.png' }, /*conf*/
-      { n:'Kit Toalha de Banho 2pç Vision Dual Air Cotton — Buddemeyer', p:349, i:'🛁', img:'img/toalha-vision.jpg' }, /*conf*/
       { n:'Kit Toalha de Banho 2pç Vision e Dual Air Cotton — Buddemeyer', p:499, i:'🛁', img:'img/toalha-vision-e.jpg' }, /*conf*/
-      { n:'Kit Toalha de Banho 2pç Roseli Extra Soft — Buddemeyer', p:499, i:'🧖', img:'img/toalha-roseli.jpg' }, /*conf*/
       { n:'Travesseiro Buddemeyer Toque de Pluma 50x90cm Algodão Branco', p:349, i:'🛌', img:'img/travesseiro.jpg' }, /*conf*/
       { n:'Jogo de Cama Bordado em Microfibra Mali Branco Casal', p:349, i:'🛏️', img:'img/cama-mali.jpg' }, /*conf*/
       { n:'Cesto Organizador P 34x29cm Branco', p:149, i:'🧺', img:'img/cesto.jpg' } /*conf*/
@@ -1077,6 +1072,7 @@ function criarCard(item){
   btn.addEventListener('click', function(){ abrirPix(item.n, item.p); });
 
   body.appendChild(nome);
+  if(item.d){ var det = document.createElement('div'); det.className = 'vcard-det'; det.textContent = item.d; body.appendChild(det); }
   body.appendChild(preco);
   body.appendChild(btn);
   card.appendChild(imgBox);
