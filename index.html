@@ -490,10 +490,11 @@ a{text-decoration:none;color:inherit}
 }
 .historia-poema{max-width:660px;margin:36px auto 0;background:rgba(255,255,255,.6);border:1px solid var(--gold-pale);border-radius:6px;padding:48px 44px}
 .historia-poema-titulo{font-family:var(--ff-script);font-size:39px;color:var(--gold);margin-bottom:30px;line-height:1.2}
-.historia-estrofes p{font-family:var(--ff-serif);font-style:italic;font-size:20px;line-height:1.75;color:var(--text);margin-bottom:22px}
+.historia-estrofes{overflow:hidden}
+.historia-estrofes p{font-family:var(--ff-serif);font-style:italic;font-size:20px;line-height:1.7;color:var(--text);margin-bottom:22px;white-space:nowrap}
 .historia-estrofes p:last-child{margin-bottom:0}
 .historia-assinatura{font-family:var(--ff-script);font-size:30px;color:var(--gold-l);margin-top:26px;text-align:right}
-@media(max-width:480px){.historia-poema{padding:32px 22px}}
+@media(max-width:480px){.historia-poema{padding:24px 12px}}
 .recados-s{background:var(--creme-d);padding:80px 0;text-align:center}
 .recado-box{max-width:560px;margin:32px auto 0;background:var(--white);border:1px solid var(--gold-pale);border-radius:6px;padding:40px 36px;box-shadow:0 4px 40px rgba(139,107,20,.08)}
 .recado-box input,.recado-box textarea{width:100%;font-family:var(--ff-body);font-size:16px;color:var(--text);background:var(--creme);border:1px solid var(--gold-pale);border-radius:6px;padding:14px 16px;margin-bottom:16px;outline:none;transition:border-color .2s}
@@ -1239,6 +1240,27 @@ var RECADO_EMAIL = "thabatafrancisco88@gmail.com";
       note.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
     });
   });
+}());
+
+/* ═══════════════════ NOSSA HISTÓRIA — ajuste responsivo do poema ═══════════════════
+   Escala a fonte das estrofes para a linha mais larga caber na tela,
+   mantendo sempre 4 linhas por estrofe (sem quebra). */
+(function(){
+  function fitHistoria(){
+    var box = document.querySelector('.historia-estrofes');
+    if(!box) return;
+    var ps = box.querySelectorAll('p'), base = 20, i;
+    for(i=0;i<ps.length;i++) ps[i].style.fontSize = base + 'px';
+    var avail = box.clientWidth, maxw = 0;
+    for(i=0;i<ps.length;i++){ if(ps[i].scrollWidth > maxw) maxw = ps[i].scrollWidth; }
+    var fs = base;
+    if(maxw > avail){ fs = Math.floor(base * (avail - 2) / maxw); if(fs < 9) fs = 9; }
+    for(i=0;i<ps.length;i++) ps[i].style.fontSize = fs + 'px';
+  }
+  window.addEventListener('resize', fitHistoria);
+  window.addEventListener('load', fitHistoria);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitHistoria); }
+  fitHistoria();
 }());
 </script>
 
