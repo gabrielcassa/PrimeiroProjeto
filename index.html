@@ -1229,7 +1229,7 @@ var RECADO_EMAIL = "thabatafrancisco88@gmail.com";
         _template: 'box'
       })
     })
-    .then(function(r){ return r.json(); })
+    .then(function(r){ return r.json().catch(function(){ return {}; }); })
     .then(function(){
       form.style.display = 'none';
       document.getElementById('recadoOk').style.display = 'block';
